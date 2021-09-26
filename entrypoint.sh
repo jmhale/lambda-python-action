@@ -36,6 +36,12 @@ aws configure set default.region "${INPUT_LAMBDA_REGION}"
 echo "OK"
 
 echo "Deploying lambda main code..."
+if [[ -z "${INPUT_LAMBDA_PAYLOAD_DIR}" ]]; then
+  echo "No payload directory set. Using root of repository."
+else
+  echo "Switching directory to ${INPUT_LAMBDA_PAYLOAD_DIR}"
+  cd ${INPUT_LAMBDA_PAYLOAD_DIR}
+fi
 zip -r lambda.zip . -x \*.git\*
 aws lambda update-function-code --function-name "${INPUT_LAMBDA_FUNCTION_NAME}" --zip-file fileb://lambda.zip
 echo "OK"
