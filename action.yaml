@@ -14,9 +14,6 @@ inputs:
   lambda_layer_arn:
     description: Lambda layer's ARN for dependencies
     required: false
-  lambda_payload_dir:
-    description: Lambda payload directory
-    required: false    
   lambda_function_name:
     description: Lambda function name
     required: true
@@ -28,7 +25,6 @@ runs:
     - ${{ inputs.lambda_layer_arn }}
     - ${{ inputs.lambda_function_name }}
     - ${{ inputs.lambda_region }}
-    - ${{ inputs.lambda_payload_dir }}
 branding:
   icon: 'upload-cloud'
   color: 'orange'
